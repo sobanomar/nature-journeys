@@ -9,8 +9,8 @@ import CompleteScene from './scenes/CompleteScene';
 
 export const GameConfig = {
   type: Phaser.AUTO,
-  width: 800,
-  height: 600,
+  width: window.innerWidth,
+  height: window.innerHeight,
   backgroundColor: '#1a3a1a',
   parent: 'game-container',
   dom: {
@@ -18,7 +18,7 @@ export const GameConfig = {
   },
   scene: [BootScene, LoginScene, HubScene, PlantScene, GrowScene, AnimalScene, CompleteScene],
   scale: {
-    mode: Phaser.Scale.FIT,
+    mode: Phaser.Scale.RESIZE,
     autoCenter: Phaser.Scale.CENTER_BOTH
   }
 };
