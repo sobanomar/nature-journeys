@@ -78,16 +78,17 @@ export default class LoginScene extends Phaser.Scene {
 
     // Card
     const cardW = Math.min(400, W * 0.88);
-    const cardH = H * 0.44;
+    const cardH = Math.min(Math.max(220, H * 0.44), H * 0.52);
     const cardX = W / 2 - cardW / 2;
-    const cardY = H * 0.29;
+    const cardY = H / 2 - cardH / 2;
+    const inputY = H / 2;
     this.add
       .graphics()
       .fillStyle(0x000000, 0.3)
       .fillRoundedRect(cardX, cardY, cardW, cardH, 16);
 
     this.add
-      .text(W / 2, cardY + cardH * 0.16, "What is your name?", {
+      .text(W / 2, inputY - cardH * 0.22, "What is your name?", {
         fontSize: `${Math.round(20 * s)}px`,
         color: "#f9fbe7",
         fontStyle: "bold",
@@ -96,9 +97,8 @@ export default class LoginScene extends Phaser.Scene {
 
     // DOM input
     const inputW = Math.min(260, cardW * 0.8);
-    const inputEl = this.add
-      .dom(W / 2, cardY + cardH * 0.4)
-      .createElement("input");
+    const inputEl = this.add.dom(W / 2 - 60, inputY).createElement("input");
+    inputEl.setOrigin(0.5);
     inputEl.node.type = "text";
     inputEl.node.placeholder = "Enter your name...";
     inputEl.node.maxLength = 20;
@@ -113,20 +113,21 @@ export default class LoginScene extends Phaser.Scene {
       color: "#1a3a1a",
       outline: "none",
       textAlign: "center",
+      boxSizing: "border-box",
     });
 
-    this.add
-      .text(W / 2, cardY + cardH * 0.62, "Round 1 of 6", {
-        fontSize: `${Math.round(14 * s)}px`,
-        color: "#8bc34a",
-      })
-      .setOrigin(0.5);
+    // this.add
+    //   .text(W / 2, inputY + cardH * 0.16, "Round 1 of 6", {
+    //     fontSize: `${Math.round(14 * s)}px`,
+    //     color: "#8bc34a",
+    //   })
+    //   .setOrigin(0.5);
 
     const btnW = Math.min(240, cardW * 0.75);
     createButton(
       this,
       W / 2,
-      cardY + cardH * 0.82,
+      inputY + cardH * 0.32,
       "Start Adventure 🌱",
       async () => {
         const name = inputEl.node.value.trim() || "Explorer";
