@@ -40,9 +40,9 @@ export default class LoginScene extends Phaser.Scene {
 
     // Background
     const bg = this.add.graphics();
-    bg.fillStyle(0x2d6a2d, 1);
-    bg.fillRect(0, 0, W, H * 0.45);
-    bg.fillStyle(0x1a3a1a, 1);
+    // bg.fillStyle(0x2d6a2d, 1);
+    // bg.fillRect(0, 0, W, H * 0.45);
+    // bg.fillStyle(0x1a3a1a, 1);
     bg.fillRect(0, H * 0.45, W, H * 0.55);
 
     // Decorative trees
